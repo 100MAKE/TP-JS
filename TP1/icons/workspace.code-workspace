@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../TP-php/exercice1"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "TP-js"
+	}
+}
