@@ -19,7 +19,7 @@
 .c1{
 
     flex: 2;
-    border: solid ;
+    border: solid hidden;
     display: flex;
     flex-direction: column;
 
@@ -33,11 +33,14 @@
 .c11{
     flex: 3;
     border: solid;
+    padding: 30px;
+    font-size: larger;
+    overflow: hidden;
 }
 .c2{
     display: block;
  flex: 8;
- border: solid;
+ border: solid hidden;
  /* flex-direction: column;
   */
 
@@ -59,7 +62,7 @@
     height: 20px;
 
 }
-#b10{ margin-top: 8px;
+.b10{ margin-top: 8px;
 /* float: right; */
 
 }
@@ -67,6 +70,6 @@
     border: solid;
     flex: 2;
     background-color: yellow;
-    font-size: 40px;
-    font-weight: 100px;
+    font-size: 30px;
+    font-weight: 80px;
 }
