@@ -26,7 +26,9 @@ function good(){
     else{ 
         if(b1.value>=5 && b1.value<20){
             var Tglob=[]
+        
             const T1=s1.checked?TABmaj:[]
+    
             const T2=s2.checked?TABmin:[]
             const T3=s3.checked?TABnum:[]
             const T4=s4.checked?TABchar:[]
@@ -36,6 +38,7 @@ function good(){
               let j=Math.floor(Math.random()*Tglob.length)
               password=password+Tglob[j]
               }
+              
               c11.innerText=password
 
 

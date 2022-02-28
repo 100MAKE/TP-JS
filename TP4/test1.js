@@ -1,51 +1,51 @@
-const rem = [
+const quizData = [
     {
-        question: "donner la valeur de ln1",
-        a: "1",
-        b: "2",
-        c: "1000",
-        d: "0",
-        correct: "d",
+        question: "quelle  est la valeur de ln1",
+        a: "0",
+        b: "1",
+        c: "2",
+        d: "3",
+        correct: "a",
     },
     
     {
-        question: "Que signifie CSS?",
-        a: "Central Style Sheets",
-        b: "Cascading Style Sheets",
-        c: "Cascading Simple Sheets",
-        d: "Cars SUVs Sailboats",
+        question: "Quel club est le champion d'angleterre 2021?",
+        a: "arsenal",
+        b: "manchester city",
+        c: "manchester united",
+        d: "PSG",
         correct: "b",
     },
     {
-        question: "qui est l'entraineur actuel du club d'everton?",
-        a: "lampard",
-        b: "klopp",
-        c: "mboma",
-        d: "pep",
+        question: "Que signifie HTML?",
+        a: "Hypertext Markup Language",
+        b: "Hypertext Markdown Language",
+        c: "Hyperloop Machine Language",
+        d: "Helicopters Terminals Motorboats Lamborginis",
         correct: "a",
     },
     {
-        question: "qui a remporté le championnnat d'angleterre 2021?",
-        a: "chelsea",
-        b: "juve",
-        c: "man u",
-        d: "man city",
+        question: "Qui sont les finalistes de la derniere LDC?",
+        a: "liverpool vs man u",
+        b: "mancity vs liverpool",
+        c: "chelsea vs liverpool",
+        d: "chelsea vs mancity",
         correct: "d",
     },
 
 ];
 
 
-const td= document.getElementById('td')
-const bien = document.querySelectorAll('.question') // question input
-const nieb = document.getElementById('answer')  // h2
-const a1answer = document.getElementById('a1answer')
-const b1answer = document.getElementById('b1answer')
-const c1answer = document.getElementById('c1answer')
-const d1answer = document.getElementById('d1answer')
-const btn = document.getElementById('submit')
+const quiz= document.getElementById('quiz')
+const answerEls = document.querySelectorAll('.answer') // question input
+const questionEl = document.getElementById('question')  // h2
+const a_question = document.getElementById('a_question')
+const b_question = document.getElementById('b_question')
+const c_question = document.getElementById('c_question')
+const d_question = document.getElementById('d_question')
+const submitBtn = document.getElementById('submit')
 
-let ver = 0  // Quiz en cours
+let currentQuiz = 0  // Quiz en cours
 let score = 0
 
 loadQuiz() // chargerQuiz 
@@ -54,54 +54,46 @@ function loadQuiz() {
 
     deselectAnswers() // désélectionnerRéponses
 
-    const raz = rem[ver]
+    const currentQuizData = quizData[currentQuiz]
 
-    bid.innerText = raz.answer
-    a1answer.innerText = raz.a1
-    b1answer.innerText = raz.b1
-    c1answer.innerText = raz.c1
-    d1answer.innerText = raz.d1
+    questionEl.innerText = currentQuizData.question
+    a_question.innerText = currentQuizData.a
+    b_question.innerText = currentQuizData.b
+    c_question.innerText = currentQuizData.c
+    d_question.innerText = currentQuizData.d
 }
 
 function deselectAnswers() {
-    bien.forEach(bien => bien.checked = false)
+    answerEls.forEach(answerEl => answerEl.checked = false)
 }
 
 function getSelected() {
-    let mine
-    bien.forEach(bien => {
-        if(bien.checked) {
-            mine= bien.id
+    let answer
+    answerEls.forEach(answerEl => {
+        if(answerEl.checked) {
+            answer = answerEl.id
         }
     })
-    return mine
+    return answer
 }
 
 
-btn.addEventListener('click', () => 
-{
+submitBtn.addEventListener('click', () => {
+    const answer = getSelected()
+    if(answer) {
+    if(answer === quizData[currentQuiz].correct) {
+        score++
+    }
 
-    const mine= getSelected()
+    currentQuiz++
 
-    if(mine) 
-    {
-        if(mine === rem[ver].correct) 
-        {
-            score++
-        }
-
-        ver++
-
-        if(ver< rem.length) 
-        {
-            loadQuiz()
-        }
-    } 
-    else 
-    {
-        td.innerHTML = `
-        <h2>Vous avez trouvé ${score}/${rem.length} questions.</h2>
+    if(currentQuiz < quizData.length) {
+        loadQuiz()
+    } else {
+        quiz.innerHTML = `
+        <h2>Vous avez trouvé ${score}/${quizData.length} questions.</h2>
         <button onclick="location.reload()">ReJouer</button>
-        
-    }   
+        `
+    }
+    }
 })
